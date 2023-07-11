@@ -18,9 +18,9 @@ function App() {
   const { Notes, Loggedin, CheckHistory } = context
 
   useEffect(() => {
+    console.log('hello')
+    CheckHistory()
     return () => {
-      console.log('hello')
-      CheckHistory()
     }
   }, [CheckHistory])
 

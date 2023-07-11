@@ -1,0 +1,70 @@
+#sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0px 5px 20px 5px;
+    background-color: rgb(6, 79, 50);
+    color: antiquewhite;
+    overflow: hidden;
+    width: 50px;
+    transition: width 0.3s ease-in-out;
+}
+
+#sidebar:hover {
+    width: 225px;
+}
+
+#note-actions {
+    display: flex;
+    flex-direction: column;
+    height: 40%;
+    justify-content: space-around;
+}
+
+#sidebar .material-symbols-outlined {
+    font-size: 2rem;
+    padding: 5px 2px;
+    border-radius: 5px;
+}
+
+
+.nav-element {
+    list-style: none;
+    border-radius: 5px;
+    padding: 3px;
+    display: flex;
+    width: 200px;
+    color: azure;
+    text-decoration-line: none;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.nav-element h2 {
+    min-width: 75%;
+    text-align: left;
+    margin: 0px 0px 0px 25px;
+}
+
+.nav-element:hover {
+    transform: scale(1.05);
+}
+
+.material-symbols-outlined.active-route {
+    color: rgb(6, 96, 58);
+    background-color: #fff0f0;
+}
+
+#site-actions {
+    display: grid;
+    grid-template-rows: auto;
+    grid-row-gap: 25px;
+}

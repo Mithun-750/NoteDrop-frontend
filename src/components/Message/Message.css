@@ -1,0 +1,27 @@
+.messageouter {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    z-index: 3;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Message {
+    background-color: blanchedalmond;
+    padding: 20px 30px;
+    border: 2px dashed;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px;
+}
+
+#Message h2 {
+    text-align: center;
+}
+
+#Message.remove {
+    transition: all 0.3s ease-in;
+    transform: translateY(-100px);
+}

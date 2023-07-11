@@ -1,0 +1,85 @@
+.AddNote {
+    width: calc(100% - 70px);
+}
+
+.addnote-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.addnote-form h1 {
+    font-size: 3rem;
+}
+
+.add-title {
+    background-color: aquamarine;
+    border: none;
+    box-shadow: 0px 0px 2px;
+    border-radius: 5px;
+    padding: 5px;
+    min-width: 70%;
+    max-width: 90%;
+    height: 50px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.add-description {
+    min-width: 70%;
+    max-width: 90%;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #d2b48c96;
+    min-height: 300px;
+}
+
+.add-tag {
+    padding: 5px;
+    min-width: 70%;
+    max-width: 90%;
+    border-radius: 5px;
+    background-color: #faebd76e;
+    box-shadow: 0px 0px 2px;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+.addnote-btn {
+    border: none;
+    padding: 15px 50px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: #daa520bf;
+    box-shadow: 0px 0px 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+.addnote-btn:hover {
+    box-shadow: 2px 2px 3px;
+    transform: translateX(-2px) translateY(-2px);
+}
+
+.addnote-btn:active {
+    box-shadow: 0px 0px 2px;
+    transform: translateX(0px) translateY(0px);
+}
+
+@media (max-height:600px) {
+    .addnote-form {
+        min-height: 600px;
+    }
+}
+
+@media (max-width:768px) {
+    .AddNote {
+        width: calc(100% - 50px);
+    }
+}

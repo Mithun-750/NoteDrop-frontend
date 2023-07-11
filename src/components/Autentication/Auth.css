@@ -1,0 +1,29 @@
+.auth-container {
+    position: fixed;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #808080ad;
+}
+
+.auth-inner {
+    background-color: antiquewhite;
+    width: 310px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.auth-inner h2 {
+    width: 100%;
+    text-align: center;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

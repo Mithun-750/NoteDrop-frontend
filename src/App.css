@@ -1,0 +1,37 @@
+body {
+    background-color: rgb(211 211 211);
+}
+
+.side-space {
+    margin-right: 70px;
+    min-height: 100vh;
+    display: inline-block;
+}
+
+#app {
+    display: flex;
+    box-sizing: unset;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+
+#app::-webkit-scrollbar {
+    height: 15px;
+}
+
+#app::-webkit-scrollbar-track {
+    background-color: antiquewhite;
+}
+
+#app::-webkit-scrollbar-thumb {
+    background-color: azure;
+    box-shadow: 0px 0px 3px;
+    border-radius: 50px;
+}
+
+@media (max-width:768px) {
+    .side-space {
+        margin-right: 50px;
+    }
+}

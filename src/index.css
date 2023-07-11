@@ -1,0 +1,12 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px;
+}

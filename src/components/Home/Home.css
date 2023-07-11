@@ -1,0 +1,43 @@
+.AllNotes {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.addnote-home {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+    margin: 10px 25px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px;
+    text-decoration-line: none;
+    color: unset;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.addnote-home:hover {
+    transform: translateX(-2px) translateY(-2px);
+    box-shadow: 3px 3px 3px;
+}
+
+.addnote-home:active {
+    transform: translateX(0px) translateY(0px);
+    box-shadow: 0px 0px 3px;
+}
+
+.addnote-home .material-symbols-outlined {
+    font-size: 75px;
+}
+
+@media (max-width:375px) {
+    .addnote-home {
+        width: 275px;
+    }
+}

@@ -105,6 +105,7 @@ const NoteState = (props) => {
 
     useEffect(() => {
         return async () => {
+            console.log("Hello")
             if (localStorage.getItem('token') || (localStorage.getItem('token') === '')) {
                 await setauthToken(localStorage.getItem('token'))
                 if (authToken !== '') {

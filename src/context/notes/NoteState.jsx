@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 const NoteState = (props) => {
 
-    const [authToken, setauthToken] = useState('')
+    const [authToken, setauthToken] = useState(localStorage.getItem('token'))
     const [Notes, setNotes] = useState([])
-    const [Loggedin, setLoggedin] = useState(false)
+    const [Loggedin, setLoggedin] = useState((authToken && (authToken !== '')) ? true : false)
 
     const baseurl = 'https://notedrop-backend.onrender.com/api/';
     const headers = {
@@ -103,22 +103,22 @@ const NoteState = (props) => {
 
     }
 
-    const CheckHistory = async () => {
-        console.log("hello")
-        console.log(localStorage.getItem('token'))
-        if (localStorage.getItem('token') || (localStorage.getItem('token') !== '')) {
-            await setauthToken(localStorage.getItem('token'))
-            if (authToken !== '') {
-                console.log('hello')
-                setLoggedin(true)
-                getallnotes()
+    useEffect(() => {
+        return async () => {
+            if (localStorage.getItem('token') && (localStorage.getItem('token') !== '')) {
+                await setauthToken(localStorage.getItem('token'))
+                if (authToken !== '') {
+                    console.log('hello')
+                    setLoggedin(true)
+                    getallnotes()
+                }
             }
         }
-    }
+    }, [])
 
 
     return (
-        <Notecontext.Provider value={{ Notes, addNote, deleteNote, updateNote, setauthToken, Loggedin, setLoggedin, getallnotes, authToken, CheckHistory }}>
+        <Notecontext.Provider value={{ Notes, addNote, deleteNote, updateNote, setauthToken, Loggedin, setLoggedin, getallnotes, authToken }}>
             {props.children}
         </Notecontext.Provider>
     )

@@ -21,7 +21,7 @@ const Profile = () => {
         const getUserDetails = () => {
             const headers = {
                 'Content-Type': 'application/json',
-                'auth-token': localStorage.getItem('token'),
+                'auth-token': authToken,
             };
 
             fetch(`https://notedrop-backend.onrender.com/api/auth/getuser`, {
@@ -43,11 +43,11 @@ const Profile = () => {
         }
 
         return () => {
-            if (localStorage.getItem('token') !== '') {
+            if (authToken !== '') {
                 getUserDetails()
             }
         }
-    }, [])
+    }, [authToken, Loggedin])
 
 
     return (

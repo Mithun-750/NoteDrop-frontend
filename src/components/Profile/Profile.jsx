@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './Profile.css';
 import Notecontext from '../../context/notes/Notecontext';
 

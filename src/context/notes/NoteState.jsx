@@ -103,24 +103,22 @@ const NoteState = (props) => {
 
     }
 
-    useEffect(() => {
-        return async () => {
-            console.log("hello")
-            console.log(localStorage.getItem('token'))
-            if (localStorage.getItem('token') || (localStorage.getItem('token') !== '')) {
-                await setauthToken(localStorage.getItem('token'))
-                if (authToken !== '') {
-                    console.log('hello')
-                    setLoggedin(true)
-                    getallnotes()
-                }
+    const CheckHistory = async () => {
+        console.log("hello")
+        console.log(localStorage.getItem('token'))
+        if (localStorage.getItem('token') || (localStorage.getItem('token') !== '')) {
+            await setauthToken(localStorage.getItem('token'))
+            if (authToken !== '') {
+                console.log('hello')
+                setLoggedin(true)
+                getallnotes()
             }
         }
-    }, [])
+    }
 
 
     return (
-        <Notecontext.Provider value={{ Notes, addNote, deleteNote, updateNote, setauthToken, Loggedin, setLoggedin, getallnotes, authToken }}>
+        <Notecontext.Provider value={{ Notes, addNote, deleteNote, updateNote, setauthToken, Loggedin, setLoggedin, getallnotes, authToken, CheckHistory }}>
             {props.children}
         </Notecontext.Provider>
     )

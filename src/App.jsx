@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar/Sidebar'
@@ -15,7 +15,14 @@ import Profile from './components/Profile/Profile';
 
 function App() {
   const context = useContext(Notecontext)
-  const { Notes, Loggedin } = context
+  const { Notes, Loggedin, CheckHistory } = context
+
+  useEffect(() => {
+    return () => {
+      CheckHistory()
+    }
+  }, [CheckHistory])
+
 
   const [message, setmessage] = useState('Sucess!!')
   const [Showmessage, setShowmessage] = useState(false)

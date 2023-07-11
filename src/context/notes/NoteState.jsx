@@ -113,7 +113,7 @@ const NoteState = (props) => {
                 }
             }
         }
-    }, [])
+    }, [authToken, getallnotes])
 
 
     return (

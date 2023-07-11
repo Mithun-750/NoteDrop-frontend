@@ -108,6 +108,7 @@ const NoteState = (props) => {
             if (localStorage.getItem('token') || (localStorage.getItem('token') === '')) {
                 await setauthToken(localStorage.getItem('token'))
                 if (authToken !== '') {
+                    console.log('hello')
                     setLoggedin(true)
                     getallnotes()
                 }

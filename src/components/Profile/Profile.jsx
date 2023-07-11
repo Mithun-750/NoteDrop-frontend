@@ -4,7 +4,7 @@ import Notecontext from '../../context/notes/Notecontext';
 
 const Profile = () => {
     const context = useContext(Notecontext)
-    const { setLoggedin, Loggedin, setauthToken } = context
+    const { setLoggedin, Loggedin, authToken, setauthToken } = context
     const [Name, setName] = useState('Name')
     const [Email, setEmail] = useState('Email')
 
@@ -47,7 +47,7 @@ const Profile = () => {
                 getUserDetails()
             }
         }
-    }, [Loggedin])
+    }, [authToken, Loggedin])
 
 
     return (

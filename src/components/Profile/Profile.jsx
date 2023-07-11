@@ -43,7 +43,7 @@ const Profile = () => {
         }
 
         return () => {
-            if (localStorage.getItem('token') !== '') {
+            if (authToken !== '') {
                 getUserDetails()
             }
         }

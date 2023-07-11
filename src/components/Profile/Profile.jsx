@@ -19,12 +19,14 @@ const Profile = () => {
 
     useEffect(() => {
         const getUserDetails = () => {
+
+            const baseurl = import.meta.env.VITE_BASE_URL;
             const headers = {
                 'Content-Type': 'application/json',
                 'auth-token': authToken,
             };
 
-            fetch(`https://notedrop-backend.onrender.com/api/auth/getuser`, {
+            fetch(`${baseurl}auth/getuser`, {
                 method: 'POST',
                 headers: headers,
             })

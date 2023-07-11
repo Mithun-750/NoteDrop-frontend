@@ -8,7 +8,7 @@ const NoteState = (props) => {
     const [Notes, setNotes] = useState([])
     const [Loggedin, setLoggedin] = useState(false)
 
-    const baseurl = 'https://notedrop-backend.onrender.com/api/';
+    const baseurl = import.meta.env.VITE_BASE_URL;
     const headers = {
         'Content-Type': 'application/json',
         'auth-token': authToken,

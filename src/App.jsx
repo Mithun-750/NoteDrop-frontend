@@ -19,6 +19,7 @@ function App() {
 
   useEffect(() => {
     return () => {
+      console.log('hello')
       CheckHistory()
     }
   }, [CheckHistory])

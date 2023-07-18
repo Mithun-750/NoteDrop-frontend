@@ -48,7 +48,7 @@ const Profile = () => {
                 getUserDetails()
             }
         }
-    }, [authToken, Loggedin])
+    }, [Loggedin])
 
 
     return (

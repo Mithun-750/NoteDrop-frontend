@@ -4,7 +4,7 @@ import Notecontext from '../../context/notes/Notecontext';
 
 const Profile = () => {
     const context = useContext(Notecontext)
-    const { setLoggedin, Loggedin, authToken, setauthToken, baseurl, Name, Email } = context
+    const { setLoggedin, Loggedin, setauthToken, Name, Email } = context
 
     const handleLogout = () => {
         if (Loggedin) {

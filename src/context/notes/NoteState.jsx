@@ -16,6 +16,7 @@ const NoteState = (props) => {
 
 
     const getallnotes = () => {
+        console.log(baseurl)
         fetch(`${baseurl}notes/getallnotes`, {
             method: 'GET',
             headers: headers,

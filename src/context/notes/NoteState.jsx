@@ -7,6 +7,8 @@ const NoteState = (props) => {
     const [authToken, setauthToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
     const [Notes, setNotes] = useState([])
     const [Loggedin, setLoggedin] = useState(false)
+    const [Name, setName] = useState('Name')
+    const [Email, setEmail] = useState('Email')
 
     const baseurl = import.meta.env.VITE_BASE_URL;
     const headers = {
@@ -73,6 +75,7 @@ const NoteState = (props) => {
             });
 
     }
+
     const updateNote = (updatednote) => {
 
         const body = {
@@ -103,12 +106,38 @@ const NoteState = (props) => {
 
     }
 
+    const getUserDetails = () => {
+
+        const headers = {
+            'Content-Type': 'application/json',
+            'auth-token': authToken,
+        };
+
+        fetch(`${baseurl}auth/getuser`, {
+            method: 'POST',
+            headers: headers,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    setName((data.user.name).charAt(0).toUpperCase() + data.user.name.slice(1))
+                    setEmail(data.user.email)
+                } else {
+                    alert(data.error)
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
     useEffect(() => {
         return async () => {
             if (authToken) {
                 if (authToken !== '') {
                     setLoggedin(true)
                     getallnotes()
+                    getUserDetails()
                 }
             }
         }
@@ -116,7 +145,7 @@ const NoteState = (props) => {
 
 
     return (
-        <Notecontext.Provider value={{ baseurl, Notes, addNote, deleteNote, updateNote, setauthToken, Loggedin, setLoggedin, getallnotes, authToken }}>
+        <Notecontext.Provider value={{ baseurl, Notes, addNote, deleteNote, updateNote, setauthToken, Loggedin, setLoggedin, getallnotes, authToken, Name, Email }}>
             {props.children}
         </Notecontext.Provider>
     )

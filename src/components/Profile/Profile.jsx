@@ -4,9 +4,7 @@ import Notecontext from '../../context/notes/Notecontext';
 
 const Profile = () => {
     const context = useContext(Notecontext)
-    const { setLoggedin, Loggedin, authToken, setauthToken, baseurl } = context
-    const [Name, setName] = useState('Name')
-    const [Email, setEmail] = useState('Email')
+    const { setLoggedin, Loggedin, authToken, setauthToken, baseurl, Name, Email } = context
 
     const handleLogout = () => {
         if (Loggedin) {
@@ -15,40 +13,6 @@ const Profile = () => {
             localStorage.removeItem('token')
         }
     }
-
-
-    useEffect(() => {
-        const getUserDetails = () => {
-
-            const headers = {
-                'Content-Type': 'application/json',
-                'auth-token': authToken,
-            };
-
-            fetch(`${baseurl}auth/getuser`, {
-                method: 'POST',
-                headers: headers,
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.success) {
-                        setName((data.user.name).charAt(0).toUpperCase() + data.user.name.slice(1))
-                        setEmail(data.user.email)
-                    } else {
-                        alert(data.error)
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-
-        return () => {
-            if (authToken !== '') {
-                getUserDetails()
-            }
-        }
-    }, [Loggedin])
 
 
     return (

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const NoteState = (props) => {
 
-    const [authToken, setauthToken] = useState('')
+    const [authToken, setauthToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
     const [Notes, setNotes] = useState([])
     const [Loggedin, setLoggedin] = useState(false)
 
@@ -106,15 +106,14 @@ const NoteState = (props) => {
     useEffect(() => {
         return async () => {
             console.log("Hello 1")
-            if (localStorage.getItem('token') || (localStorage.getItem('token') === '')) {
-                await setauthToken(localStorage.getItem('token'))
+            if (authToken) {
                 if (authToken !== '') {
                     setLoggedin(true)
                     getallnotes()
                 }
             }
         }
-    }, [])
+    }, [authToken])
 
 
     return (

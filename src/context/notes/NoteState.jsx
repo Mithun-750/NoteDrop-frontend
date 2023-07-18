@@ -23,6 +23,7 @@ const NoteState = (props) => {
             .then(response => response.json())
             .then(data => {
                 setNotes(data);
+                console.log(data)
             })
             .catch(error => {
                 console.error(error);

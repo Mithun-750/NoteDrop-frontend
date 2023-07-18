@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar/Sidebar'
@@ -20,6 +20,13 @@ function App() {
 
   const [message, setmessage] = useState('Sucess!!')
   const [Showmessage, setShowmessage] = useState(false)
+
+  useEffect(() => {
+    return () => {
+      console.log("Hello")
+    }
+  }, [])
+
 
 
   return (

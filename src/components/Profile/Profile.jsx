@@ -4,7 +4,7 @@ import Notecontext from '../../context/notes/Notecontext';
 
 const Profile = () => {
     const context = useContext(Notecontext)
-    const { setLoggedin, Loggedin, authToken, setauthToken } = context
+    const { setLoggedin, Loggedin, authToken, setauthToken, baseurl } = context
     const [Name, setName] = useState('Name')
     const [Email, setEmail] = useState('Email')
 
@@ -20,7 +20,6 @@ const Profile = () => {
     useEffect(() => {
         const getUserDetails = () => {
 
-            const baseurl = import.meta.env.VITE_BASE_URL;
             const headers = {
                 'Content-Type': 'application/json',
                 'auth-token': authToken,

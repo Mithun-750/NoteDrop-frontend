@@ -8,7 +8,7 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false); // New state variable
     const context = useContext(Notecontext);
-    const { setauthToken, setLoggedin, getallnotes, authToken } = context;
+    const { setauthToken, setLoggedin, getallnotes, authToken, baseurl } = context;
 
     useEffect(() => {
         if (authToken) {
@@ -38,7 +38,7 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
 
         const body = { email, password };
 
-        fetch(`https://notedrop-backend.onrender.com/api/auth/login`, {
+        fetch(`${baseurl}auth/login`, {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(body),
@@ -66,7 +66,7 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
         };
 
         const body = { name, email, password };
-        fetch(`https://notedrop-backend.onrender.com/api/auth/signup`, {
+        fetch(`${baseurl}auth/signup`, {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(body),

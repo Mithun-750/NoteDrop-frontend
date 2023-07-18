@@ -105,7 +105,6 @@ const NoteState = (props) => {
 
     useEffect(() => {
         return async () => {
-            console.log("Hello 1")
             if (authToken) {
                 if (authToken !== '') {
                     setLoggedin(true)

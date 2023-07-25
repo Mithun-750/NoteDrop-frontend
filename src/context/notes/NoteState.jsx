@@ -135,8 +135,13 @@ const NoteState = (props) => {
         return async () => {
             if (authToken) {
                 if (authToken !== '') {
-                    getallnotes()
-                    getUserDetails()
+                    try {
+                        getallnotes()
+                        getUserDetails()
+                    } catch (error) {
+                        console.error(error)
+                    }
+
                     setLoggedin(true)
                 }
             }

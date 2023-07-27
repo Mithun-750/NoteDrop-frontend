@@ -17,8 +17,8 @@ const NoteState = (props) => {
     };
 
 
-    const getallnotes = () => {
-        fetch(`${baseurl}notes/getallnotes`, {
+    const getallnotes = async () => {
+        await fetch(`${baseurl}notes/getallnotes`, {
             method: 'GET',
             headers: headers,
         })
@@ -76,7 +76,7 @@ const NoteState = (props) => {
 
     }
 
-    const updateNote = (updatednote) => {
+    const updateNote = async (updatednote) => {
 
         const body = {
             title: updatednote.title,
@@ -84,7 +84,7 @@ const NoteState = (props) => {
             tag: updatednote.tag,
         };
 
-        fetch(`${baseurl}notes/updatenote/${updatednote._id}`, {
+        await fetch(`${baseurl}notes/updatenote/${updatednote._id}`, {
             method: 'PUT',
             headers: headers,
             body: JSON.stringify(body)
@@ -106,14 +106,14 @@ const NoteState = (props) => {
 
     }
 
-    const getUserDetails = () => {
+    const getUserDetails = async () => {
 
         const headers = {
             'Content-Type': 'application/json',
             'auth-token': authToken,
         };
 
-        fetch(`${baseurl}auth/getuser`, {
+        await fetch(`${baseurl}auth/getuser`, {
             method: 'POST',
             headers: headers,
         })
@@ -136,13 +136,13 @@ const NoteState = (props) => {
             if (authToken) {
                 if (authToken !== '') {
                     try {
-                        getallnotes()
-                        getUserDetails()
+                        await getallnotes()
+                        await getUserDetails()
+                        setLoggedin(true)
                     } catch (error) {
                         console.error(error)
                     }
 
-                    setLoggedin(true)
                 }
             }
         }

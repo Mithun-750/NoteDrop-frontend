@@ -2,11 +2,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import Notecontext from "./Notecontext";
 import { useEffect, useState } from "react";
-import { EmailValue, NameValue, loginStatus } from "../../state/action-creators";
+import { EmailValue, NameValue, authToken, loginStatus } from "../../state/action-creators";
 
 const NoteState = (props) => {
 
-    const authToken = useSelector(state => state.authToken)
+    const Token = useSelector(state => state.authToken)
     const [Notes, setNotes] = useState([])
     const authStatus = useSelector(state => state.status)
     const dispatch = useDispatch()
@@ -14,7 +14,7 @@ const NoteState = (props) => {
     const baseurl = import.meta.env.VITE_BASE_URL;
     const headers = {
         'Content-Type': 'application/json',
-        'auth-token': authToken,
+        'auth-token': Token,
     };
 
 
@@ -113,7 +113,7 @@ const NoteState = (props) => {
 
             const headers = {
                 'Content-Type': 'application/json',
-                'auth-token': authToken,
+                'auth-token': Token,
             };
 
             await fetch(`${baseurl}auth/getuser`, {
@@ -134,8 +134,8 @@ const NoteState = (props) => {
                 });
         }
         return async () => {
-            if (authToken && !authStatus) {
-                if (authToken !== '') {
+            if (Token && !authStatus) {
+                if (Token !== '') {
                     try {
                         await getallnotes()
                         await getUserDetails()
@@ -147,7 +147,10 @@ const NoteState = (props) => {
                 }
             }
         }
-    }, [authToken])
+    }, [Token])
+
+
+    dispatch(authToken(localStorage.getItem('token') ? localStorage.getItem('token') : ''));
 
 
     return (

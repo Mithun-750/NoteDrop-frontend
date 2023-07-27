@@ -142,7 +142,6 @@ const NoteState = (props) => {
                         await getallnotes()
                         await getUserDetails()
                         dispatch(loginStatus(true))
-                        console.log("hi")
                     } catch (error) {
                         console.error(error)
                     }

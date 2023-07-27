@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './LoginForm.css';
 import Notecontext from '../../../context/notes/Notecontext'
 import { authToken, loginStatus } from '../../../state/action-creators';
@@ -8,10 +8,17 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false); // New state variable
+    const [showPassword, setShowPassword] = useState(false);
     const context = useContext(Notecontext);
     const { baseurl } = context;
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        return () => {
+            console.log("hi")
+        }
+    }, [])
+
 
     const handleNameChange = (e) => {
         setName(e.target.value);

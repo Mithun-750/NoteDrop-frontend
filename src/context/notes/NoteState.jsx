@@ -147,7 +147,7 @@ const NoteState = (props) => {
                 }
             }
         }
-    }, [])
+    }, [authToken, baseurl])
 
 
     return (

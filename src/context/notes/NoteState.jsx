@@ -6,11 +6,10 @@ import { EmailValue, NameValue, loginStatus } from "../../state/action-creators"
 
 const NoteState = (props) => {
 
-    const authToken = useSelector(state => state.authToken)
+    const [authToken, setauthToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
     const [Notes, setNotes] = useState([])
     const authStatus = useSelector(state => state.status)
     const dispatch = useDispatch()
-    const [localToken, setlocalToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
 
     const baseurl = import.meta.env.VITE_BASE_URL;
     const headers = {
@@ -148,11 +147,11 @@ const NoteState = (props) => {
                 }
             }
         }
-    }, [localToken])
+    }, [authToken])
 
 
     return (
-        <Notecontext.Provider value={{ baseurl, Notes, addNote, deleteNote, updateNote, getallnotes }}>
+        <Notecontext.Provider value={{ baseurl, Notes, addNote, deleteNote, updateNote, setauthToken, getallnotes, authToken }}>
             {props.children}
         </Notecontext.Provider>
     )

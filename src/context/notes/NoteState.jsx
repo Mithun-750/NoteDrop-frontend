@@ -10,8 +10,6 @@ const NoteState = (props) => {
     const [Notes, setNotes] = useState([])
     const authStatus = useSelector(state => state.status)
     const dispatch = useDispatch()
-    const Name = useSelector(state => state.name)
-    const Email = useSelector(state => state.email)
 
     const baseurl = import.meta.env.VITE_BASE_URL;
     const headers = {

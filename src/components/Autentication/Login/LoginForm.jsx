@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './LoginForm.css';
 import Notecontext from '../../../context/notes/Notecontext'
+import { loginStatus } from '../../../state/action-creators';
+import { useDispatch } from 'react-redux';
 
 const LoginForm = ({ setmessage, setShowmessage }) => {
     const [name, setName] = useState('');
@@ -8,14 +10,8 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false); // New state variable
     const context = useContext(Notecontext);
-    const { setauthToken, setLoggedin, getallnotes, authToken, baseurl } = context;
-
-    useEffect(() => {
-        if (authToken) {
-            setLoggedin(true);
-            getallnotes();
-        }
-    }, [authToken, setLoggedin, getallnotes]);
+    const { setauthToken, baseurl } = context;
+    const dispatch = useDispatch()
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -47,6 +43,7 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
             .then((data) => {
                 if (data.success) {
                     setauthToken(data.token);
+                    dispatch(loginStatus(true))
                     localStorage.setItem('token', data.token)
                     setmessage(`\u{1F44B} Welcome ${((data.name).charAt(0).toUpperCase() + data.name.slice(1))}!`)
                     setShowmessage(true)
@@ -75,6 +72,7 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
             .then((data) => {
                 if (data.success) {
                     setauthToken(data.token);
+                    dispatch(loginStatus(true))
                     localStorage.setItem('token', data.token)
                     setmessage(`\u{1F44B} Welcome ${((data.name).charAt(0).toUpperCase() + data.name.slice(1))}!`)
                     setShowmessage(true)

@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
+import { useDispatch, useSelector } from "react-redux";
 import Notecontext from "./Notecontext";
 import { useEffect, useState } from "react";
+import { EmailValue, NameValue, loginStatus } from "../../state/action-creators";
 
 const NoteState = (props) => {
 
     const [authToken, setauthToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
     const [Notes, setNotes] = useState([])
-    const [Loggedin, setLoggedin] = useState(false)
-    const [Name, setName] = useState('Name')
-    const [Email, setEmail] = useState('Email')
+    const authStatus = useSelector(state => state.status)
+    const dispatch = useDispatch()
+    const Name = useSelector(state => state.name)
+    const Email = useSelector(state => state.email)
 
     const baseurl = import.meta.env.VITE_BASE_URL;
     const headers = {
@@ -106,39 +109,40 @@ const NoteState = (props) => {
 
     }
 
-    const getUserDetails = async () => {
-
-        const headers = {
-            'Content-Type': 'application/json',
-            'auth-token': authToken,
-        };
-
-        await fetch(`${baseurl}auth/getuser`, {
-            method: 'POST',
-            headers: headers,
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    setName((data.user.name).charAt(0).toUpperCase() + data.user.name.slice(1))
-                    setEmail(data.user.email)
-                } else {
-                    alert(data.error)
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
 
     useEffect(() => {
+        const getUserDetails = async () => {
+
+            const headers = {
+                'Content-Type': 'application/json',
+                'auth-token': authToken,
+            };
+
+            await fetch(`${baseurl}auth/getuser`, {
+                method: 'POST',
+                headers: headers,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        dispatch(NameValue((data.user.name).charAt(0).toUpperCase() + data.user.name.slice(1)))
+                        dispatch(EmailValue(data.user.email))
+                    } else {
+                        alert(data.error)
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
         return async () => {
-            if (authToken) {
+            if (authToken && !authStatus) {
                 if (authToken !== '') {
                     try {
                         await getallnotes()
                         await getUserDetails()
-                        setLoggedin(true)
+                        dispatch(loginStatus(true))
+                        console.log("hi")
                     } catch (error) {
                         console.error(error)
                     }
@@ -146,11 +150,11 @@ const NoteState = (props) => {
                 }
             }
         }
-    }, [authToken])
+    }, [authStatus])
 
 
     return (
-        <Notecontext.Provider value={{ baseurl, Notes, addNote, deleteNote, updateNote, setauthToken, Loggedin, setLoggedin, getallnotes, authToken, Name, Email }}>
+        <Notecontext.Provider value={{ baseurl, Notes, addNote, deleteNote, updateNote, setauthToken, getallnotes, authToken }}>
             {props.children}
         </Notecontext.Provider>
     )

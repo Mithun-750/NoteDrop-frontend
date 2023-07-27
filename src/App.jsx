@@ -12,26 +12,22 @@ import FindNote from './components/FindNote/FindNote';
 import Message from './components/Message/Message';
 import Auth from './components/Autentication/Auth';
 import Profile from './components/Profile/Profile';
+import { Provider, useSelector } from 'react-redux';
+import { store } from './state/store';
 
 function App() {
   const context = useContext(Notecontext)
-  const { Notes, Loggedin } = context
+  const { Notes } = context
 
+  const authStatus = useSelector(state => state.status)
 
   const [message, setmessage] = useState('Sucess!!')
   const [Showmessage, setShowmessage] = useState(false)
 
-  useEffect(() => {
-    return () => {
-      console.log("Hello2")
-    }
-  }, [])
-
-
 
   return (
     <>
-      {(!Loggedin) && (
+      {(!authStatus) && (
         <Auth setShowmessage={setShowmessage} setmessage={setmessage} />
       )}
       <Sidebar />
@@ -62,9 +58,11 @@ function App() {
 export function APPwithRouter() {
   return (
     <Router>
-      <NoteState>
-        <App />
-      </NoteState>
+      <Provider store={store}>
+        <NoteState>
+          <App />
+        </NoteState>
+      </Provider>
     </Router>
   );
 }

@@ -10,7 +10,7 @@ const NoteState = (props) => {
     const [Notes, setNotes] = useState([])
     const authStatus = useSelector(state => state.status)
     const dispatch = useDispatch()
-    const localToken = (localStorage.getItem('token') ? localStorage.getItem('token') : '')
+    const [localToken, setlocalToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
 
     const baseurl = import.meta.env.VITE_BASE_URL;
     const headers = {

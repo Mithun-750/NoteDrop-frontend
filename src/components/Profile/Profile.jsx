@@ -1,12 +1,8 @@
-import { useContext } from 'react';
 import './Profile.css';
-import Notecontext from '../../context/notes/Notecontext';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginStatus } from '../../state/action-creators';
+import { authToken, loginStatus } from '../../state/action-creators';
 
 const Profile = () => {
-    const context = useContext(Notecontext)
-    const { setauthToken } = context
     const authStatus = useSelector(state => state.status)
     const dispatch = useDispatch()
     const Name = useSelector(state => state.name)
@@ -14,7 +10,7 @@ const Profile = () => {
 
     const handleLogout = () => {
         if (authStatus) {
-            setauthToken('')
+            dispatch(authToken(''))
             localStorage.removeItem('token')
             dispatch(loginStatus(false))
         }

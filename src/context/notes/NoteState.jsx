@@ -6,7 +6,7 @@ import { EmailValue, NameValue, loginStatus } from "../../state/action-creators"
 
 const NoteState = (props) => {
 
-    const [authToken, setauthToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
+    const authToken = useSelector(state => state.authToken)
     const [Notes, setNotes] = useState([])
     const authStatus = useSelector(state => state.status)
     const dispatch = useDispatch()
@@ -147,11 +147,11 @@ const NoteState = (props) => {
                 }
             }
         }
-    }, [authStatus])
+    }, [authToken])
 
 
     return (
-        <Notecontext.Provider value={{ baseurl, Notes, addNote, deleteNote, updateNote, setauthToken, getallnotes, authToken }}>
+        <Notecontext.Provider value={{ baseurl, Notes, addNote, deleteNote, updateNote, getallnotes, authToken }}>
             {props.children}
         </Notecontext.Provider>
     )

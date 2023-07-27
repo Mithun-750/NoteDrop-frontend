@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import './LoginForm.css';
 import Notecontext from '../../../context/notes/Notecontext'
-import { loginStatus } from '../../../state/action-creators';
+import { authToken, loginStatus } from '../../../state/action-creators';
 import { useDispatch } from 'react-redux';
 
 const LoginForm = ({ setmessage, setShowmessage }) => {
@@ -10,7 +10,7 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false); // New state variable
     const context = useContext(Notecontext);
-    const { setauthToken, baseurl } = context;
+    const { baseurl } = context;
     const dispatch = useDispatch()
 
     const handleNameChange = (e) => {
@@ -42,7 +42,7 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    setauthToken(data.token);
+                    dispatch(authToken(data.token));
                     dispatch(loginStatus(true))
                     localStorage.setItem('token', data.token)
                     setmessage(`\u{1F44B} Welcome ${((data.name).charAt(0).toUpperCase() + data.name.slice(1))}!`)
@@ -71,7 +71,7 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    setauthToken(data.token);
+                    dispatch(authToken(data.token));
                     dispatch(loginStatus(true))
                     localStorage.setItem('token', data.token)
                     setmessage(`\u{1F44B} Welcome ${((data.name).charAt(0).toUpperCase() + data.name.slice(1))}!`)

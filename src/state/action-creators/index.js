@@ -24,3 +24,11 @@ export const EmailValue = (email) => {
     })
   }
 }
+export const authToken = (token) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'token',
+      payload: token,
+    })
+  }
+}

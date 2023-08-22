@@ -1,0 +1,9 @@
+#about {
+    margin-left: 10px;
+    margin-top: 10px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 1.25rem;
+}

@@ -38,7 +38,7 @@ const About = () => {
             </p>
             <h3>Contact Us</h3>
             <p>
-                Have questions, suggestions, or feedback? Feel free to reach out to us at <a href="mailto:your@email.com">your@email.com</a>.
+                Have questions, suggestions, or feedback? Feel free to reach out to us.
             </p>
             <p>
                 Source Code: <a href="https://github.com/Mithun-750/NoteDrop-frontend" target='__blank'>Frontend</a> :: <a href="https://github.com/Mithun-750/NoteDrop-backend" target='__blank'>Backend</a>

@@ -133,7 +133,7 @@ const NoteState = (props) => {
                     console.error(error);
                 });
         }
-        return async () => {
+        async () => {
             if (Token && !authStatus) {
                 if (Token !== '') {
                     try {

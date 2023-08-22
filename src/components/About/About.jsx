@@ -32,6 +32,10 @@ const About = () => {
             <p>
                 NoteDrop was created by Mithun, a web developer with a vision for user-friendly applications that enhance productivity and organization.
             </p>
+            <h3>Website loads slowly?</h3>
+            <p>
+                The backend server for NoteDrop is hosted on Render. Please note that after a period of inactivity, the server might respond slowly initially, but it will regain its speed once it's active again.
+            </p>
             <h3>Contact Us</h3>
             <p>
                 Have questions, suggestions, or feedback? Feel free to reach out to us at <a href="mailto:your@email.com">your@email.com</a>.

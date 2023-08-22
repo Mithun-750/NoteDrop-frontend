@@ -133,21 +133,33 @@ const NoteState = (props) => {
                     console.error(error);
                 });
         }
-        async () => {
-            if (Token && !authStatus) {
-                if (Token !== '') {
-                    try {
-                        await getallnotes()
-                        await getUserDetails()
-                        dispatch(loginStatus(true))
-                    } catch (error) {
-                        console.error(error)
-                    }
+        // async () => {
+        //     if (Token && !authStatus) {
+        //         if (Token !== '') {
+        //             try {
+        //                 await getallnotes()
+        //                 await getUserDetails()
+        //                 dispatch(loginStatus(true))
+        //             } catch (error) {
+        //                 console.error(error)
+        //             }
 
+        //         }
+        //     }
+        // }
+        if (Token && !authStatus) {
+            if (Token !== '') {
+                try {
+                    getallnotes()
+                    getUserDetails()
+                    dispatch(loginStatus(true))
+                } catch (error) {
+                    console.error(error)
                 }
+
             }
         }
-    }, [Token])
+    }, [])
 
 
     dispatch(authToken(localStorage.getItem('token') ? localStorage.getItem('token') : ''));

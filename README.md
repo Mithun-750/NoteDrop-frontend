@@ -28,7 +28,7 @@
 
 <h2>Contributing</h2>
 
-<p>Contributions are welcome! If you find a bug or want to add a new feature, please follow these steps:</p>
+<p>If you find a bug or want to add a new feature, contributions are welcome!</p>
 
 <h2>Backend Note</h2>
 

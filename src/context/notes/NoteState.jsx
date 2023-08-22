@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Notecontext from "./Notecontext";
 import { useEffect, useState } from "react";
-import { EmailValue, NameValue, authToken, loginStatus } from "../../state/action-creators";
+import { EmailValue, NameValue, authToken, loginStatus, SinceValue } from "../../state/action-creators";
 
 const NoteState = (props) => {
 
@@ -108,45 +108,34 @@ const NoteState = (props) => {
     }
 
 
-    useEffect(() => {
-        const getUserDetails = async () => {
+    const getUserDetails = async () => {
 
-            const headers = {
-                'Content-Type': 'application/json',
-                'auth-token': Token,
-            };
+        const headers = {
+            'Content-Type': 'application/json',
+            'auth-token': Token,
+        };
 
-            await fetch(`${baseurl}auth/getuser`, {
-                method: 'POST',
-                headers: headers,
+        await fetch(`${baseurl}auth/getuser`, {
+            method: 'POST',
+            headers: headers,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    dispatch(NameValue((data.user.name).charAt(0).toUpperCase() + data.user.name.slice(1)))
+                    dispatch(EmailValue(data.user.email))
+                    dispatch(SinceValue(data.user.joined))
+                } else {
+                    alert(data.error)
+                }
             })
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.success) {
-                        dispatch(NameValue((data.user.name).charAt(0).toUpperCase() + data.user.name.slice(1)))
-                        dispatch(EmailValue(data.user.email))
-                    } else {
-                        alert(data.error)
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
-        // async () => {
-        //     if (Token && !authStatus) {
-        //         if (Token !== '') {
-        //             try {
-        //                 await getallnotes()
-        //                 await getUserDetails()
-        //                 dispatch(loginStatus(true))
-        //             } catch (error) {
-        //                 console.error(error)
-        //             }
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
-        //         }
-        //     }
-        // }
+    useEffect(() => {
+        dispatch(authToken(localStorage.getItem('token') ? localStorage.getItem('token') : ''));
         if (Token && !authStatus) {
             if (Token !== '') {
                 try {
@@ -162,7 +151,6 @@ const NoteState = (props) => {
     }, [])
 
 
-    dispatch(authToken(localStorage.getItem('token') ? localStorage.getItem('token') : ''));
 
 
     return (

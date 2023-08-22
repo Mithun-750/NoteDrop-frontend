@@ -24,6 +24,14 @@ export const EmailValue = (email) => {
     })
   }
 }
+export const SinceValue = (since) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'since',
+      payload: since,
+    })
+  }
+}
 export const authToken = (token) => {
   return (dispatch) => {
     dispatch({

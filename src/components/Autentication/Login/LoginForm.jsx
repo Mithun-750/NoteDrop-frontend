@@ -13,11 +13,6 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
     const { baseurl } = context;
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        return () => {
-            console.log("hi")
-        }
-    }, [])
 
 
     const handleNameChange = (e) => {
@@ -91,9 +86,6 @@ const LoginForm = ({ setmessage, setShowmessage }) => {
                 console.error(error);
             });
 
-        console.log('Name:', name);
-        console.log('Email:', email);
-        console.log('Password:', password);
     };
 
     const toggleShowPassword = () => {

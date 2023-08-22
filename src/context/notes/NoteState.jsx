@@ -148,7 +148,7 @@ const NoteState = (props) => {
 
             }
         }
-    }, [])
+    }, [Token])
 
 
 
